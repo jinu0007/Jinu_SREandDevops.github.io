@@ -5,47 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jinu Sivaraman | Site Reliability Engineer</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --accent-color: #f59e0b;
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
-            --bg-light: #f8fafc;
-            --white: #ffffff;
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --accent: #f59e0b;
+            --dark: #1f2937;
+            --light: #6b7280;
+            --bg: #f8fafc;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            color: var(--text-dark);
+            color: var(--dark);
             overflow-x: hidden;
         }
 
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         /* Navigation */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255,255,255,0.95);
             backdrop-filter: blur(10px);
             padding: 1rem 0;
             z-index: 1000;
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
         }
 
         .nav-container {
@@ -60,7 +50,7 @@
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--primary);
             text-decoration: none;
         }
 
@@ -71,59 +61,27 @@
         }
 
         .nav-link {
-            color: var(--text-dark);
+            color: var(--dark);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
-            position: relative;
         }
 
-        .nav-link:hover {
-            color: var(--primary-color);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-color);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
+        .nav-link:hover { color: var(--primary); }
 
         /* Hero Section */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
             position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,0 1000,1000"/></svg>');
-            background-size: cover;
         }
 
         .hero-content {
-            position: relative;
-            z-index: 2;
             max-width: 800px;
             padding: 0 2rem;
         }
@@ -132,24 +90,21 @@
             font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            opacity: 0;
-            animation: slideInUp 1s ease 0.2s forwards;
+            animation: fadeInUp 1s ease 0.2s both;
         }
 
         .hero-subtitle {
             font-size: 1.3rem;
             margin-bottom: 1.5rem;
-            color: var(--accent-color);
-            opacity: 0;
-            animation: slideInUp 1s ease 0.4s forwards;
+            color: var(--accent);
+            animation: fadeInUp 1s ease 0.4s both;
         }
 
         .hero-description {
             font-size: 1.2rem;
             margin-bottom: 2.5rem;
             opacity: 0.9;
-            animation: slideInUp 1s ease 0.6s forwards;
-            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s both;
         }
 
         .hero-buttons {
@@ -157,8 +112,7 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
-            opacity: 0;
-            animation: slideInUp 1s ease 0.8s forwards;
+            animation: fadeInUp 1s ease 0.8s both;
         }
 
         .btn {
@@ -173,8 +127,8 @@
         }
 
         .btn-primary {
-            background: var(--accent-color);
-            color: var(--text-dark);
+            background: var(--accent);
+            color: var(--dark);
         }
 
         .btn-secondary {
@@ -188,7 +142,7 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
-        /* Section Styles */
+        /* Sections */
         .section {
             padding: 100px 0;
         }
@@ -204,7 +158,7 @@
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 3rem;
-            color: var(--text-dark);
+            color: var(--dark);
             position: relative;
         }
 
@@ -213,14 +167,14 @@
             display: block;
             width: 80px;
             height: 4px;
-            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            background: linear-gradient(45deg, var(--primary), var(--accent));
             margin: 1rem auto;
             border-radius: 2px;
         }
 
         /* About Section */
         .about {
-            background: var(--bg-light);
+            background: var(--bg);
         }
 
         .about-grid {
@@ -230,15 +184,11 @@
             align-items: center;
         }
 
-        .about-image {
-            text-align: center;
-        }
-
         .profile-circle {
             width: 280px;
             height: 280px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -246,34 +196,39 @@
             color: white;
             margin: 0 auto;
             box-shadow: 0 20px 60px rgba(37, 99, 235, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .profile-circle::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            animation: shimmer 3s infinite;
         }
 
         .about-text h3 {
             font-size: 1.8rem;
-            color: var(--primary-color);
+            color: var(--primary);
             margin-bottom: 1rem;
         }
 
         .about-text p {
             font-size: 1.1rem;
-            color: var(--text-light);
+            color: var(--light);
             margin-bottom: 1.5rem;
         }
 
-        /* Stats */
+        .achievement-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .achievement-list li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+            color: var(--light);
+        }
+
+        .achievement-list li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+        }
+
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -288,7 +243,6 @@
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
-            border: 1px solid rgba(37, 99, 235, 0.1);
         }
 
         .stat-card:hover {
@@ -298,12 +252,12 @@
         .stat-number {
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--primary);
             margin-bottom: 0.5rem;
         }
 
         .stat-label {
-            color: var(--text-light);
+            color: var(--light);
             font-weight: 500;
         }
 
@@ -319,7 +273,7 @@
         }
 
         .skill-card {
-            background: var(--bg-light);
+            background: var(--bg);
             padding: 2rem;
             border-radius: 20px;
             transition: transform 0.3s ease;
@@ -341,7 +295,7 @@
         .skill-icon {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -357,7 +311,7 @@
         }
 
         .skill-tag {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             padding: 0.5rem 1rem;
             border-radius: 25px;
@@ -372,60 +326,15 @@
 
         /* Experience Section */
         .experience {
-            background: var(--bg-light);
+            background: var(--bg);
         }
 
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .timeline-content {
+        .exp-card {
             background: white;
-            padding: 2rem;
+            padding: 3rem;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin-left: 60%;
-            position: relative;
-        }
-
-        .timeline-item:nth-child(even) .timeline-content {
-            margin-left: 0;
-            margin-right: 60%;
-        }
-
-        .timeline-icon {
-            position: absolute;
-            left: 50%;
-            top: 30px;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.3rem;
-            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+            border-left: 5px solid var(--primary);
         }
 
         /* Projects Section */
@@ -454,15 +363,10 @@
         }
 
         .project-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             padding: 2rem;
             text-align: center;
-        }
-
-        .project-header h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
         }
 
         .project-body {
@@ -477,8 +381,8 @@
         }
 
         .tech-item {
-            background: var(--bg-light);
-            color: var(--text-dark);
+            background: var(--bg);
+            color: var(--dark);
             padding: 0.4rem 0.8rem;
             border-radius: 15px;
             font-size: 0.85rem;
@@ -486,40 +390,9 @@
             border: 1px solid rgba(37, 99, 235, 0.2);
         }
 
-        .project-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .project-link {
-            flex: 1;
-            text-align: center;
-            padding: 0.8rem;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .link-primary {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        .link-secondary {
-            background: var(--bg-light);
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-        }
-
-        .project-link:hover {
-            transform: translateY(-2px);
-        }
-
         /* Contact Section */
         .contact {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
             text-align: center;
         }
@@ -547,12 +420,12 @@
         .contact-icon {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: var(--accent-color);
+            color: var(--accent);
         }
 
         /* Footer */
         .footer {
-            background: var(--text-dark);
+            background: var(--dark);
             color: white;
             text-align: center;
             padding: 2rem 0;
@@ -568,7 +441,7 @@
         .social-link {
             width: 50px;
             height: 50px;
-            background: var(--primary-color);
+            background: var(--primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -580,11 +453,11 @@
 
         .social-link:hover {
             transform: translateY(-3px);
-            background: var(--accent-color);
+            background: var(--accent);
         }
 
         /* Animations */
-        @keyframes slideInUp {
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(50px);
@@ -595,91 +468,28 @@
             }
         }
 
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(200%) translateY(200%) rotate(45deg); }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
                 transform: translateY(0);
             }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
         }
 
-        /* Responsive Design */
+        /* Responsive */
         @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-content {
-                margin-left: 60px !important;
-                margin-right: 0 !important;
-            }
-
-            .timeline-icon {
-                left: 20px;
-                transform: translateX(-50%);
-            }
-
-            .profile-circle {
-                width: 200px;
-                height: 200px;
-                font-size: 4rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
+            .nav-menu { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .about-grid { grid-template-columns: 1fr; text-align: center; }
+            .profile-circle { width: 200px; height: 200px; font-size: 4rem; }
+            .hero-buttons { flex-direction: column; align-items: center; }
         }
 
-        /* Additional Styles */
-        .highlight {
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-
-        .achievement-list {
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        .achievement-list li {
-            padding: 0.5rem 0;
-            position: relative;
-            padding-left: 2rem;
-            color: var(--text-light);
-        }
-
-        .achievement-list li::before {
-            content: '✅';
-            position: absolute;
-            left: 0;
-            top: 0.5rem;
-        }
+        .highlight { color: var(--primary); font-weight: 600; }
 
         .scroll-indicator {
             position: absolute;
@@ -689,18 +499,6 @@
             color: white;
             font-size: 2rem;
             animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-5px);
-            }
         }
     </style>
 </head>
@@ -727,7 +525,7 @@
             <p class="hero-subtitle">Site Reliability Engineer | DevOps Specialist | Cloud Expert</p>
             <p class="hero-description">
                 Building reliable, scalable infrastructure with <span class="highlight">99.9% uptime</span>. 
-                Passionate about automation, monitoring, and operational excellence in enterprise environments.
+                4 years of experience in enterprise environments, specializing in Kubernetes, AWS, and automation.
             </p>
             <div class="hero-buttons">
                 <a href="#contact" class="btn btn-primary">
@@ -744,37 +542,38 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section about">
+    <section id="about" class="section" style="background: var(--bg);">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">About Me</h2>
+            <h2 class="section-title">About Me</h2>
             <div class="about-grid">
-                <div class="about-image" data-aos="fade-right">
+                <div style="text-align: center;">
                     <div class="profile-circle">
                         <i class="fas fa-user"></i>
                     </div>
                 </div>
-                <div class="about-text" data-aos="fade-left">
-                    <h3>Site Reliability Engineer</h3>
-                    <p>
+                <div class="about-text">
+                    <h3 style="font-size: 1.8rem; color: var(--primary); margin-bottom: 1rem;">Site Reliability Engineer</h3>
+                    <p style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--light);">
                         I'm a passionate Site Reliability Engineer with <strong>4 years of enterprise experience</strong> 
                         building and maintaining mission-critical infrastructure. My expertise lies in creating robust, 
-                        scalable systems that can handle massive scale while maintaining exceptional reliability.
+                        scalable systems that handle massive scale while maintaining exceptional reliability.
                     </p>
-                    <p>
-                        At Tata Consultancy Services, I've evolved from an entry-level engineer to a key technical 
-                        resource, leading initiatives that have significantly improved system reliability and operational efficiency.
+                    <p style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--light);">
+                        At Tata Consultancy Services, I've evolved from entry-level to key technical resource, 
+                        leading initiatives that significantly improve system reliability and operational efficiency.
                     </p>
+                    
                     <ul class="achievement-list">
-                        <li>Maintained <strong>99.9% uptime</strong> for enterprise infrastructure</li>
-                        <li>Reduced production incidents by <strong>45%</strong></li>
-                        <li>Improved SLA compliance from <strong>80% to 92%</strong></li>
-                        <li>Supporting <strong>500+ developers</strong> with reliable toolchain</li>
-                        <li>Eliminated <strong>8+ hours</strong> of weekly manual tasks</li>
+                        <li>Maintained <strong>99.9% system uptime</strong> for enterprise infrastructure</li>
+                        <li>Reduced production incidents by <strong>45%</strong> through proactive monitoring</li>
+                        <li>Improved SLA compliance from <strong>80% to 92%</strong> via automation</li>
+                        <li>Supporting <strong>500+ developers</strong> with reliable CI/CD toolchain</li>
+                        <li>Eliminated <strong>8+ hours</strong> of weekly manual tasks through scripting</li>
                     </ul>
                 </div>
             </div>
 
-            <div class="stats-grid" data-aos="fade-up">
+            <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-number">99.9%</div>
                     <div class="stat-label">System Uptime</div>
@@ -798,10 +597,10 @@
     <!-- Skills Section -->
     <section id="skills" class="section skills">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Technical Skills</h2>
+            <h2 class="section-title">Technical Skills</h2>
             <div class="skills-grid">
                 
-                <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="skill-card">
                     <div class="skill-header">
                         <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
                         <h3>Site Reliability & Monitoring</h3>
@@ -813,10 +612,11 @@
                         <span class="skill-tag">SLA/SLO</span>
                         <span class="skill-tag">Incident Response</span>
                         <span class="skill-tag">RCA</span>
+                        <span class="skill-tag">Capacity Planning</span>
                     </div>
                 </div>
 
-                <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="skill-card">
                     <div class="skill-header">
                         <div class="skill-icon"><i class="fas fa-cloud"></i></div>
                         <h3>Cloud & Infrastructure</h3>
@@ -826,12 +626,13 @@
                         <span class="skill-tag">Kubernetes</span>
                         <span class="skill-tag">OpenShift</span>
                         <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Helm</span>
+                        <span class="skill-tag">Helm Charts</span>
                         <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Infrastructure as Code</span>
                     </div>
                 </div>
 
-                <div class="skill-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="skill-card">
                     <div class="skill-header">
                         <div class="skill-icon"><i class="fas fa-cogs"></i></div>
                         <h3>DevOps & Automation</h3>
@@ -843,25 +644,27 @@
                         <span class="skill-tag">GitLab CI</span>
                         <span class="skill-tag">Python</span>
                         <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">YAML</span>
                     </div>
                 </div>
 
-                <div class="skill-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="skill-card">
                     <div class="skill-header">
                         <div class="skill-icon"><i class="fas fa-tools"></i></div>
                         <h3>Enterprise Tools</h3>
                     </div>
                     <div class="skill-tags">
                         <span class="skill-tag">Artifactory</span>
-                        <span class="skill-tag">SonarQube</span>
                         <span class="skill-tag">GitLab</span>
+                        <span class="skill-tag">SonarQube</span>
                         <span class="skill-tag">Bitbucket</span>
                         <span class="skill-tag">JIRA</span>
                         <span class="skill-tag">Confluence</span>
+                        <span class="skill-tag">Black Duck</span>
                     </div>
                 </div>
 
-                <div class="skill-card" data-aos="fade-up" data-aos-delay="500">
+                <div class="skill-card">
                     <div class="skill-header">
                         <div class="skill-icon"><i class="fas fa-brain"></i></div>
                         <h3>AI & ML Operations</h3>
@@ -869,14 +672,14 @@
                     <div class="skill-tags">
                         <span class="skill-tag">Ollama</span>
                         <span class="skill-tag">FastAPI</span>
-                        <span class="skill-tag">Vector DB</span>
-                        <span class="skill-tag">LLM Hosting</span>
+                        <span class="skill-tag">Vector Databases</span>
                         <span class="skill-tag">Streamlit</span>
-                        <span class="skill-tag">MLOps</span>
+                        <span class="skill-tag">LLM Hosting</span>
+                        <span class="skill-tag">Semantic Search</span>
                     </div>
                 </div>
 
-                <div class="skill-card" data-aos="fade-up" data-aos-delay="600">
+                <div class="skill-card">
                     <div class="skill-header">
                         <div class="skill-icon"><i class="fas fa-shield-alt"></i></div>
                         <h3>Security & Compliance</h3>
@@ -897,20 +700,124 @@
     <!-- Experience Section -->
     <section id="experience" class="section experience">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Professional Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">Site Reliability Engineer | System Engineer</h3>
-                        <h4 style="color: var(--text-light); margin-bottom: 1rem;">Tata Consultancy Services (TCS) | Nov 2021 - Present</h4>
-                        <p style="margin-bottom: 1.5rem;">
-                            Leading site reliability initiatives for enterprise-scale infrastructure, implementing monitoring solutions, 
-                            and driving automation across hybrid cloud environments.
-                        </p>
-                        
-                        <h5 style="color: var(--primary-color); margin-bottom: 0.8rem;">Key Achievements:</h5>
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="exp-card">
+                <h3 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1.5rem;">
+                    <i class="fas fa-briefcase"></i> Site Reliability Engineer | System Engineer
+                </h3>
+                <h4 style="color: var(--light); margin-bottom: 1.5rem;">
+                    Tata Consultancy Services (TCS) | Nov 2021 - Present | Chennai, India
+                </h4>
+                <p style="margin-bottom: 2rem; font-size: 1.1rem; color: var(--light);">
+                    Leading site reliability initiatives for enterprise-scale infrastructure serving 500+ developers. 
+                    Responsible for maintaining critical systems, implementing monitoring solutions, and driving 
+                    automation across hybrid cloud environments.
+                </p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div>
+                        <h5 style="color: var(--primary); margin-bottom: 1rem;">🎯 System Reliability & Performance</h5>
                         <ul class="achievement-list">
-                            <li>Maintain 99.9% uptime for critical DevOps
+                            <li>Maintain 99.9% uptime for critical enterprise infrastructure</li>
+                            <li>Lead incident response and Root Cause Analysis</li>
+                            <li>Implement SLI/SLO monitoring with Prometheus & Grafana</li>
+                            <li>Design capacity planning strategies for Kubernetes clusters</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h5 style="color: var(--primary); margin-bottom: 1rem;">☁️ Infrastructure & Cloud</h5>
+                        <ul class="achievement-list">
+                            <li>Architect Kubernetes (OpenShift) clusters with auto-scaling</li>
+                            <li>Deploy containerized applications with zero-downtime</li>
+                            <li>Manage AWS infrastructure (EC2, S3, IAM, VPC)</li>
+                            <li>Implement GitOps workflows reducing deployment errors by 40%</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h5 style="color: var(--primary); margin-bottom: 1rem;">🔧 DevOps & Automation</h5>
+                        <ul class="achievement-list">
+                            <li>Administer enterprise CI/CD toolchain</li>
+                            <li>Create Python automation scripts saving 8+ hours weekly</li>
+                            <li>Optimize CI/CD pipelines for multiple package types</li>
+                            <li>Implement configuration management and credential rotation</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h5 style="color: var(--primary); margin-bottom: 1rem;">🏆 Key Achievements</h5>
+                        <ul class="achievement-list">
+                            <li>Reduced system downtime by 45% through proactive monitoring</li>
+                            <li>Improved SLA compliance from 80% to 92%</li>
+                            <li>Led successful AWS migration POC with risk assessment</li>
+                            <li>Became technical SME in 24 months</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3><i class="fas fa-robot"></i> AI-Powered Incident Response</h3>
+                        <p style="opacity: 0.9; margin-top: 0.5rem;">Intelligent Automation System</p>
+                    </div>
+                    <div class="project-body">
+                        <p style="color: var(--light); margin-bottom: 1rem;">
+                            Built intelligent chatbot system that automates ticket classification and resolution, 
+                            improving SLA compliance from 80% to 92% through semantic search and AI processing.
+                        </p>
+                        <div class="tech-stack">
+                            <span class="tech-item">Python</span>
+                            <span class="tech-item">FastAPI</span>
+                            <span class="tech-item">Ollama</span>
+                            <span class="tech-item">Vector DB</span>
+                            <span class="tech-item">Kubernetes</span>
+                            <span class="tech-item">Docker</span>
+                        </div>
+                        <ul class="achievement-list">
+                            <li><strong>65% faster</strong> incident response time</li>
+                            <li>Processed <strong>3 years</strong> of historical ticket data</li>
+                            <li>Auto-scaling on Kubernetes for <strong>1000+ users</strong></li>
+                            <li>Semantic search with <strong>95% accuracy</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3><i class="fas fa-dharmachakra"></i> Enterprise Kubernetes Platform</h3>
+                        <p style="opacity: 0.9; margin-top: 0.5rem;">Container Orchestration</p>
+                    </div>
+                    <div class="project-body">
+                        <p style="color: var(--light); margin-bottom: 1rem;">
+                            Complete container orchestration platform with GitOps, comprehensive monitoring, 
+                            and automated deployments for enterprise CI/CD tools serving 500+ developers.
+                        </p>
+                        <div class="tech-stack">
+                            <span class="tech-item">Kubernetes</span>
+                            <span class="tech-item">OpenShift</span>
+                            <span class="tech-item">Helm</span>
+                            <span class="tech-item">Argo CD</span>
+                            <span class="tech-item">Prometheus</span>
+                            <span class="tech-item">Grafana</span>
+                        </div>
+                        <ul class="achievement-list">
+                            <li><strong>Zero-downtime</strong> deployments achieved</li>
+                            <li><strong>40% reduction</strong> in manual deployments</li>
+                            <li>Comprehensive monitoring with <strong>custom dashboards</strong></li>
+                            <li>Auto-scaling based on <strong>real-time metrics</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
